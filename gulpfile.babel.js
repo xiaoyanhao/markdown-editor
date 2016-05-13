@@ -5,6 +5,7 @@ const scss = require('gulp-sass')
 const browserSync = require('browser-sync').create()
 const webpack = require('webpack-stream')
 const webpackConfig = require('./webpack.config.js')
+const ghPages = require('gulp-gh-pages')
 
 // clean dist directory
 gulp.task('clean', cb => {
