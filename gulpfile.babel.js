@@ -6,6 +6,8 @@ const browserSync = require('browser-sync').create()
 const webpack = require('webpack-stream')
 const webpackConfig = require('./webpack.config.js')
 const ghPages = require('gulp-gh-pages')
+const uglify = require('gulp-uglify')
+const cleanCSS = require('gulp-clean-css')
 
 // clean dist directory
 gulp.task('clean', cb => {
@@ -22,6 +24,7 @@ gulp.task('html', () => {
 gulp.task('scss', () => {
   return gulp.src('src/**/*.scss')
     .pipe(scss())
+    .pipe(cleanCSS())
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream())
 })
@@ -31,12 +34,22 @@ gulp.task('babel', () => {
   return gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(webpack(webpackConfig))
+    .pipe(uglify())
     .pipe(gulp.dest('dist'))
 })
 
 // copy bower_components into dist directory
 gulp.task('bower', () => {
-  return gulp.src('bower_components/**/*.{js,css}', {base: './'})
+  let mainFiles = [
+    'bower_components/github-markdown-css/github-markdown.css',
+    'bower_components/highlightjs/styles/github-gist.css',
+    'bower_components/react/react-with-addons.min.js',
+    'bower_components/react/react-dom.min.js',
+    'bower_components/marked/marked.min.js',
+    'bower_components/highlightjs/highlight.pack.min.js'
+  ]
+
+  return gulp.src(mainFiles, {base: './'})
     .pipe(gulp.dest('dist'))
 })
 
