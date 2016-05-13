@@ -1,0 +1,26 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; }
+
+#main {
+  width: 100%;
+  height: 100%; }
+  #main .markdownEditor {
+    width: 100%;
+    height: 100%; }
+    #main .markdownEditor .editor, #main .markdownEditor .previewer {
+      width: 40%;
+      height: 100%;
+      margin: 15px;
+      padding: 45px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      word-wrap: break-word;
+      overflow: scroll; }
+    #main .markdownEditor .editor {
+      float: left;
+      outline: none; }
+    #main .markdownEditor .previewer {
+      float: right; }
