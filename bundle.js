@@ -1,1 +1,460 @@
-!function(e){function t(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return e[r].call(o.exports,o,o.exports,t),o.loaded=!0,o.exports}var n={};return t.m=e,t.c=n,t.p="",t(0)}([function(e,t,n){"use strict";function r(e){return e&&e.__esModule?e:{"default":e}}function o(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function a(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function u(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),c=n(1),l=r(c),f=n(2),p=r(f),s=function(e){function t(e){o(this,t);var n=a(this,Object.getPrototypeOf(t).call(this,e));return n.state={input:e.initialInput},n.handleInputChange=n.handleInputChange.bind(n),n}return u(t,e),i(t,[{key:"handleInputChange",value:function(e){this.setState({input:e})}},{key:"render",value:function(){return React.createElement("div",{className:"markdownEditor"},React.createElement(l["default"],{onInputChange:this.handleInputChange}),React.createElement(p["default"],{input:this.state.input}))}}]),t}(React.Component);s.propTypes={initialInput:React.PropTypes.string},s.defaultProps={initialInput:null},ReactDOM.render(React.createElement(s,null),document.getElementById("main"))},function(e,t){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}(),u=function(e){function t(e){n(this,t);var o=r(this,Object.getPrototypeOf(t).call(this,e));return o.handleInputChange=o.handleInputChange.bind(o),o}return o(t,e),a(t,[{key:"handleInputChange",value:function(e){console.log(e.target.value),this.props.onInputChange(e.target.value)}},{key:"render",value:function(){return React.createElement("textarea",{className:"editor",onKeyUp:this.handleInputChange})}}]),t}(React.Component);t["default"]=u},function(e,t){"use strict";function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function r(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}function o(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}Object.defineProperty(t,"__esModule",{value:!0});var a=function(){function e(e,t){for(var n=0;n<t.length;n++){var r=t[n];r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}return function(t,n,r){return n&&e(t.prototype,n),r&&e(t,r),t}}();marked.setOptions({highlight:function(e,t){return hljs.highlight(t,e).value}});var u=function(e){function t(e){return n(this,t),r(this,Object.getPrototypeOf(t).call(this,e))}return o(t,e),a(t,[{key:"rawMarkup",value:function u(){var u=this.props.input;return u&&(u=marked(u)),{__html:u}}},{key:"render",value:function(){return React.createElement("article",{className:"previewer markdown-body",dangerouslySetInnerHTML:this.rawMarkup()})}}]),t}(React.Component);t["default"]=u}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			exports: {},
+/******/ 			id: moduleId,
+/******/ 			loaded: false
+/******/ 		};
+
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+
+/******/ 		// Flag the module as loaded
+/******/ 		module.loaded = true;
+
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+
+
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _editor = __webpack_require__(1);
+
+	var _editor2 = _interopRequireDefault(_editor);
+
+	var _previewer = __webpack_require__(2);
+
+	var _previewer2 = _interopRequireDefault(_previewer);
+
+	var _toolbar = __webpack_require__(3);
+
+	var _toolbar2 = _interopRequireDefault(_toolbar);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var MarkdownEditor = function (_React$Component) {
+	  _inherits(MarkdownEditor, _React$Component);
+
+	  function MarkdownEditor(props) {
+	    _classCallCheck(this, MarkdownEditor);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(MarkdownEditor).call(this, props));
+
+	    _this.state = { input: props.initialInput };
+	    _this.handleInputChange = _this.handleInputChange.bind(_this);
+	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
+	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(MarkdownEditor, [{
+	    key: 'handleInputChange',
+	    value: function handleInputChange(newInput) {
+	      this.setState({ input: newInput });
+	    }
+	  }, {
+	    key: 'toggleSlideToolbar',
+	    value: function toggleSlideToolbar() {
+	      var markdownEditor = this.refs.markdownEditor;
+	      console.log(markdownEditor);
+	      markdownEditor.classList.toggle('slide-down');
+	      markdownEditor.classList.toggle('slide-up');
+	    }
+	  }, {
+	    key: 'toggleSlideEditor',
+	    value: function toggleSlideEditor() {
+	      var editor = this.refs.editor;
+	      console.log(editor);
+	      editor.classList.toggle('slide-left');
+	      editor.classList.toggle('slide-right');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { id: 'markdown-editor', className: 'slide-down', ref: 'markdownEditor' },
+	        React.createElement(_toolbar2.default, { input: this.state.input }),
+	        React.createElement(
+	          'div',
+	          { className: 'col-2 slide-left', ref: 'editor' },
+	          React.createElement(_editor2.default, _extends({}, this.props, {
+	            onInputChange: this.handleInputChange,
+	            onToggleSlideToolbar: this.toggleSlideToolbar,
+	            onToggleSlideEditor: this.toggleSlideEditor
+	          })),
+	          React.createElement(_previewer2.default, { input: this.state.input })
+	        )
+	      );
+	    }
+	  }]);
+
+	  return MarkdownEditor;
+	}(React.Component);
+
+	MarkdownEditor.propTypes = { initialInput: React.PropTypes.string };
+	MarkdownEditor.defaultProps = { initialInput: null };
+
+	ReactDOM.render(React.createElement(MarkdownEditor, null), document.getElementsByTagName('body')[0]);
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Editor = function (_React$Component) {
+	  _inherits(Editor, _React$Component);
+
+	  function Editor(props) {
+	    _classCallCheck(this, Editor);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Editor).call(this, props));
+
+	    _this.handleInputChange = _this.handleInputChange.bind(_this);
+	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
+	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
+	    return _this;
+	  }
+
+	  _createClass(Editor, [{
+	    key: 'handleInputChange',
+	    value: function handleInputChange(event) {
+	      this.props.onInputChange(event.target.value);
+	    }
+	  }, {
+	    key: 'toggleSlideToolbar',
+	    value: function toggleSlideToolbar(event) {
+	      var svg = event.currentTarget;
+	      svg.classList.toggle('slide-down');
+	      svg.classList.toggle('slide-up');
+	      this.props.onToggleSlideToolbar();
+	    }
+	  }, {
+	    key: 'toggleSlideEditor',
+	    value: function toggleSlideEditor(event) {
+	      var svg = event.currentTarget;
+	      svg.classList.toggle('slide-left');
+	      svg.classList.toggle('slide-right');
+	      this.props.onToggleSlideEditor();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { id: 'editor', className: 'slide-left' },
+	        React.createElement(
+	          'svg',
+	          { className: 'slide-toolbar slide-down', onClick: this.toggleSlideToolbar },
+	          React.createElement('path', { d: 'M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z' })
+	        ),
+	        React.createElement(
+	          'svg',
+	          { className: 'slide-editor slide-left', onClick: this.toggleSlideEditor },
+	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
+	        ),
+	        React.createElement('textarea', { onKeyUp: this.handleInputChange })
+	      );
+	    }
+	  }]);
+
+	  return Editor;
+	}(React.Component);
+
+	exports.default = Editor;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	marked.setOptions({
+	  highlight: function highlight(code, lang) {
+	    return hljs.highlight(lang, code).value;
+	  }
+	});
+
+	var Previewer = function (_React$Component) {
+	  _inherits(Previewer, _React$Component);
+
+	  function Previewer(props) {
+	    _classCallCheck(this, Previewer);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Previewer).call(this, props));
+	  }
+
+	  _createClass(Previewer, [{
+	    key: 'rawMarkup',
+	    value: function rawMarkup() {
+	      var rawMarkup = this.props.input;
+	      if (rawMarkup) {
+	        rawMarkup = marked(rawMarkup, { sanitize: true });
+	      }
+	      return { __html: rawMarkup };
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement('article', { id: 'previewer', className: 'markdown-body slide-left', dangerouslySetInnerHTML: this.rawMarkup() });
+	    }
+	  }]);
+
+	  return Previewer;
+	}(React.Component);
+
+	exports.default = Previewer;
+
+/***/ },
+/* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Toolbar = function (_React$Component) {
+	  _inherits(Toolbar, _React$Component);
+
+	  function Toolbar(props) {
+	    _classCallCheck(this, Toolbar);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Toolbar).call(this, props));
+	  }
+
+	  _createClass(Toolbar, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { id: 'toolbar' },
+	        React.createElement(
+	          'div',
+	          { className: 'btn-group' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Header 1', className: 'btn', id: 'toolbar-h1' },
+	            React.createElement(
+	              'strong',
+	              null,
+	              'h1'
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Header 2', className: 'btn', id: 'toolbar-h2' },
+	            React.createElement(
+	              'strong',
+	              null,
+	              'h2'
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Header 3', className: 'btn', id: 'toolbar-h3' },
+	            React.createElement(
+	              'strong',
+	              null,
+	              'h3'
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'btn-group' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Link', className: 'btn', id: 'toolbar-link' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M4 9h1v1h-1c-1.5 0-3-1.69-3-3.5s1.55-3.5 3-3.5h4c1.45 0 3 1.69 3 3.5 0 1.41-0.91 2.72-2 3.25v-1.16c0.58-0.45 1-1.27 1-2.09 0-1.28-1.02-2.5-2-2.5H4c-0.98 0-2 1.22-2 2.5s1 2.5 2 2.5z m9-3h-1v1h1c1 0 2 1.22 2 2.5s-1.02 2.5-2 2.5H9c-0.98 0-2-1.22-2-2.5 0-0.83 0.42-1.64 1-2.09v-1.16c-1.09 0.53-2 1.84-2 3.25 0 1.81 1.55 3.5 3 3.5h4c1.45 0 3-1.69 3-3.5s-1.5-3.5-3-3.5z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Image', className: 'btn', id: 'toolbar-image' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M6 5h2v2H6V5z m6-0.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v11l3-5 2 4 2-2 3 3V5z' })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'btn-group' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Bold', className: 'btn', id: 'toolbar-bold' },
+	            React.createElement(
+	              'strong',
+	              null,
+	              'B'
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Italic', className: 'btn', id: 'toolbar-italic' },
+	            React.createElement(
+	              'i',
+	              null,
+	              'i'
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Code', className: 'btn', id: 'toolbar-code' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M9.5 3l-1.5 1.5 3.5 3.5L8 11.5l1.5 1.5 4.5-5L9.5 3zM4.5 3L0 8l4.5 5 1.5-1.5L2.5 8l3.5-3.5L4.5 3z' })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'btn-group' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Unordered List', className: 'btn', id: 'toolbar-ul' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M2 13c0 0.59 0 1-0.59 1H0.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h0.81c0.59 0 0.59 0.41 0.59 1z m2.59-9h6.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1H4.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1zM1.41 7H0.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1h0.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1z m0-5H0.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1h0.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1z m10 5H4.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1h6.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1z m0 5H4.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1h6.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Ordered List', className: 'btn', id: 'toolbar-ol' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M12 13c0 0.59 0 1-0.59 1H4.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h6.81c0.59 0 0.59 0.41 0.59 1zM4.59 4h6.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1H4.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1z m6.81 3H4.59c-0.59 0-0.59 0.41-0.59 1s0 1 0.59 1h6.81c0.59 0 0.59-0.41 0.59-1s0-1-0.59-1zM2 1H1.28C0.98 1.19 0.7 1.25 0.25 1.34v0.66h0.75v2.14H0.16v0.86h2.84v-0.86h-1V1z m0.25 8.13c-0.17 0-0.45 0.03-0.66 0.06 0.53-0.56 1.14-1.25 1.14-1.89-0.02-0.78-0.56-1.3-1.36-1.3-0.59 0-0.97 0.2-1.38 0.64l0.58 0.58c0.19-0.19 0.38-0.38 0.64-0.38 0.28 0 0.48 0.16 0.48 0.52 0 0.53-0.77 1.2-1.7 2.06v0.58h3l-0.09-0.88h-0.66z m-0.08 3.78v-0.03c0.44-0.19 0.64-0.47 0.64-0.86 0-0.7-0.56-1.11-1.44-1.11-0.48 0-0.89 0.19-1.28 0.52l0.55 0.64c0.25-0.2 0.44-0.31 0.69-0.31 0.27 0 0.42 0.13 0.42 0.36 0 0.27-0.2 0.44-0.86 0.44v0.75c0.83 0 0.98 0.17 0.98 0.47 0 0.25-0.23 0.38-0.58 0.38-0.28 0-0.56-0.14-0.81-0.38L0 14.44c0.3 0.36 0.77 0.56 1.41 0.56 0.83 0 1.53-0.41 1.53-1.16 0-0.5-0.31-0.81-0.77-0.94z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Tasklist', className: 'btn', id: 'toolbar-tasklist' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M15.41 9H7.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h7.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1zM9.59 4c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h5.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1H9.59zM0 3.91l1.41-1.3 1.59 1.59L7.09 0l1.41 1.41-5.5 5.5L0 3.91z m7.59 8.09h7.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1H7.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Blockquote', className: 'btn', id: 'toolbar-blockquote' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M6.16 3.17C3.73 4.73 2.55 6.34 2.55 9.03c0.16-0.05 0.3-0.05 0.44-0.05 1.27 0 2.5 0.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61C1.09 14 0 12.48 0 9.75 0 5.95 1.75 3.22 5.02 1.33l1.14 1.84z m7 0C10.73 4.73 9.55 6.34 9.55 9.03c0.16-0.05 0.3-0.05 0.44-0.05 1.27 0 2.5 0.86 2.5 2.41 0 1.61-1.03 2.61-2.5 2.61-1.89 0-2.98-1.52-2.98-4.25 0-3.8 1.75-6.53 5.02-8.42l1.14 1.84z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Horizontal Rule', className: 'btn', id: 'toolbar-hr' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M1 7h2v2h1V3h-1v3H1V3H0v6h1V7z m9 2V7h-1v2h1z m0-3V4h-1v2h1z m-3 0V4h2v-1H6v6h1V7h2v-1H7zM0 13h10V11H0v2z' })
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          'a',
+	          { href: 'https://help.github.com/articles/basic-writing-and-formatting-syntax/', target: '_blank' },
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Help', className: 'btn', id: 'toolbar-help' },
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M6 10h2v2H6V10z m4-3.5c0 2.14-2 2.5-2 2.5H6c0-0.55 0.45-1 1-1h0.5c0.28 0 0.5-0.22 0.5-0.5v-1c0-0.28-0.22-0.5-0.5-0.5h-1c-0.28 0-0.5 0.22-0.5 0.5v0.5H4c0-1.5 1.5-3 3-3s3 1 3 2.5zM7 2.3c3.14 0 5.7 2.56 5.7 5.7S10.14 13.7 7 13.7 1.3 11.14 1.3 8s2.56-5.7 5.7-5.7m0-1.3C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7S10.86 1 7 1z' })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Toolbar;
+	}(React.Component);
+
+	exports.default = Toolbar;
+
+/***/ }
+/******/ ]);

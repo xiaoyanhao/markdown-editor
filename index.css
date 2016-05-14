@@ -1,1 +1,158 @@
-#main,#main .markdownEditor,body,html{width:100%;height:100%}body,html{margin:0;padding:0}#main .markdownEditor .editor,#main .markdownEditor .previewer{width:40%;height:100%;margin:15px;padding:45px;border:1px solid #ddd;border-radius:3px;word-wrap:break-word;overflow:scroll}#main .markdownEditor .editor{float:left;outline:0}#main .markdownEditor .previewer{float:right}
+div, article, textarea {
+  box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%; }
+
+#markdown-editor {
+  width: 100%;
+  height: 100%; }
+  #markdown-editor .col-2 {
+    width: 100%;
+    height: 100%; }
+
+#toolbar {
+  position: relative;
+  padding: 10px 45px;
+  border-bottom: 1px solid #ddd;
+  -webkit-transition: top 700ms ease 0s;
+  -moz-transition: top 700ms ease 0s;
+  -ms-transition: top 700ms ease 0s;
+  -o-transition: top 700ms ease 0s;
+  transition: top 700ms ease 0s; }
+  #toolbar .btn {
+    position: relative;
+    /*float: left;*/
+    font-size: 13px;
+    font-weight: bold;
+    width: 30px;
+    margin-left: -1px;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #eee;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    background-image: -webkit-linear-gradient(#fcfcfc, #eee);
+    background-image: -moz-linear-gradient(#fcfcfc, #eee);
+    background-image: -ms-linear-gradient(#fcfcfc, #eee);
+    background-image: -o-linear-gradient(#fcfcfc, #eee);
+    background-image: linear-gradient(#fcfcfc, #eee); }
+    #toolbar .btn svg {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-top;
+      fill: #333; }
+  #toolbar .btn-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px; }
+    #toolbar .btn-group .btn {
+      border-radius: 0; }
+      #toolbar .btn-group .btn:hover {
+        z-index: 2;
+        border-color: #ccc;
+        background-image: -webkit-linear-gradient(#eee, #ddd);
+        background-image: -moz-linear-gradient(#eee, #ddd);
+        background-image: -ms-linear-gradient(#eee, #ddd);
+        background-image: -o-linear-gradient(#eee, #ddd);
+        background-image: linear-gradient(#eee, #ddd); }
+      #toolbar .btn-group .btn:focus {
+        z-index: 3;
+        outline: none;
+        border-color: #51a7e8;
+        box-shadow: 0 0 5px rgba(81, 167, 232, 0.5); }
+      #toolbar .btn-group .btn:active {
+        z-index: 2;
+        background-color: #dcdcdc;
+        background-image: none;
+        border-color: #b5b5b5;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15); }
+    #toolbar .btn-group .btn:last-child {
+      border-radius: 0 3px 3px 0; }
+    #toolbar .btn-group .btn:first-child {
+      border-radius: 3px 0 0 3px; }
+
+#editor {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  position: relative; }
+  #editor svg {
+    width: 22px;
+    height: 24px;
+    position: absolute;
+    fill: #ddd;
+    cursor: pointer;
+    -webkit-transition: -webkit-transform 700ms ease 0s;
+    -moz-transition: -webkit-transform 700ms ease 0s;
+    -ms-transition: -webkit-transform 700ms ease 0s;
+    -o-transition: -webkit-transform 700ms ease 0s;
+    transition: -webkit-transform 700ms ease 0s;
+    -webkit-transition: -moz-transform 700ms ease 0s;
+    -moz-transition: -moz-transform 700ms ease 0s;
+    -ms-transition: -moz-transform 700ms ease 0s;
+    -o-transition: -moz-transform 700ms ease 0s;
+    transition: -moz-transform 700ms ease 0s;
+    -webkit-transition: -ms-transform 700ms ease 0s;
+    -moz-transition: -ms-transform 700ms ease 0s;
+    -ms-transition: -ms-transform 700ms ease 0s;
+    -o-transition: -ms-transform 700ms ease 0s;
+    transition: -ms-transform 700ms ease 0s;
+    -webkit-transition: -o-transform 700ms ease 0s;
+    -moz-transition: -o-transform 700ms ease 0s;
+    -ms-transition: -o-transform 700ms ease 0s;
+    -o-transition: -o-transform 700ms ease 0s;
+    transition: -o-transform 700ms ease 0s;
+    -webkit-transition: transform 700ms ease 0s;
+    -moz-transition: transform 700ms ease 0s;
+    -ms-transition: transform 700ms ease 0s;
+    -o-transition: transform 700ms ease 0s;
+    transition: transform 700ms ease 0s; }
+    #editor svg:hover {
+      fill: #333; }
+    #editor svg.slide-toolbar {
+      right: 0;
+      top: 0; }
+    #editor svg.slide-editor {
+      right: 0;
+      top: 40%; }
+    #editor svg.slide-down, #editor svg.slide-left {
+      -webkit-transform: rotate(0deg);
+      -moz-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      -o-transform: rotate(0deg);
+      transform: rotate(0deg); }
+    #editor svg.slide-up, #editor svg.slide-right {
+      -webkit-transform: rotate(540deg);
+      -moz-transform: rotate(540deg);
+      -ms-transform: rotate(540deg);
+      -o-transform: rotate(540deg);
+      transform: rotate(540deg); }
+  #editor textarea {
+    width: 100%;
+    height: 100%;
+    padding: 45px;
+    border: none;
+    outline: none;
+    word-wrap: break-word;
+    overflow: scroll; }
+
+#previewer {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  padding: 45px;
+  border-left: 1px solid #ddd;
+  word-wrap: break-word;
+  overflow: scroll; }

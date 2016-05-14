@@ -1,0 +1,8 @@
+#previewer {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  padding: 45px;
+  border-left: 1px solid #ddd;
+  word-wrap: break-word;
+  overflow: scroll; }
