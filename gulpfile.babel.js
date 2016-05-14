@@ -24,7 +24,7 @@ gulp.task('html', () => {
 gulp.task('scss', () => {
   return gulp.src('src/**/*.scss')
     .pipe(scss())
-    .pipe(cleanCSS())
+    // .pipe(cleanCSS())
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream())
 })
@@ -34,7 +34,7 @@ gulp.task('babel', () => {
   return gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(webpack(webpackConfig))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(gulp.dest('dist'))
 })
 
@@ -58,13 +58,14 @@ gulp.task('serve', ['bower', 'scss', 'babel', 'html'], () => {
   browserSync.init({
     server: {
       baseDir: './dist'
-    }
+    },
+    open: false
   })
 
   gulp.watch('src/**/*.html', ['html'])
   gulp.watch('src/**/*.scss', ['scss'])
   gulp.watch('src/**/*.js', ['babel'])
-  gulp.watch(['dist/**/*.html', 'dist/**/*.js', './*']).on('change', browserSync.reload)
+  gulp.watch(['dist/**/*.html', 'dist/**/*.js']).on('change', browserSync.reload)
 })
 
 // publish to Github pages

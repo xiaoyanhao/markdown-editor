@@ -1,0 +1,54 @@
+@import '../mixin';
+
+#editor {
+  display: inline-block;
+  width: 50%;
+  height: 100%;
+  position: relative;
+
+  svg {
+    width: 22px;
+    height: 24px;
+    position: absolute;
+    fill: #ddd;
+    cursor: pointer;
+    @include transition(-webkit-transform, 700ms);
+    @include transition(-moz-transform, 700ms);
+    @include transition(-ms-transform, 700ms);
+    @include transition(-o-transform, 700ms);
+    @include transition(transform, 700ms);
+
+    &:hover {
+      // background-color: #f3f3f3;
+      fill: #333;
+    }
+
+    &.slide-toolbar {
+      right: 0;
+      top: 0;
+    }
+
+    &.slide-editor {
+      right: 0;
+      top: 40%;
+    }
+
+    &.slide-down, &.slide-left {
+      @include rotate(0deg);
+    }
+
+    &.slide-up, &.slide-right {
+      @include rotate(540deg);
+    }
+  }
+
+  textarea {
+    width: 100%;
+    height: 100%;
+    padding: 45px;
+    border: none;
+    outline: none;
+    word-wrap: break-word;
+    overflow: scroll;
+  }
+}

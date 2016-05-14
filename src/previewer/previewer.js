@@ -13,15 +13,14 @@ class Previewer extends React.Component {
   rawMarkup() {
     let rawMarkup = this.props.input
     if (rawMarkup) {
-      rawMarkup = marked(rawMarkup)
-      // rawMarkup = marked(rawMarkup, {sanitize: true})
+      rawMarkup = marked(rawMarkup, {sanitize: true})
     }
     return {__html: rawMarkup}
   }
 
   render() {
     return (
-      <article className='previewer markdown-body' dangerouslySetInnerHTML={this.rawMarkup()}>
+      <article id='previewer' className='markdown-body slide-left' dangerouslySetInnerHTML={this.rawMarkup()}>
       </article>
     )
   }

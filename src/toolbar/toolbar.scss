@@ -1,0 +1,73 @@
+@import '../mixin';
+
+#toolbar {
+  position: relative;
+  padding: 10px 45px;
+  border-bottom: 1px solid #ddd;
+  @include transition(top, 700ms);
+
+  .btn {
+    position: relative;
+    /*float: left;*/
+    font-size: 13px;
+    font-weight: bold;
+    width: 30px;
+    margin-left: -1px;
+    line-height: 20px;
+    color: #333;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #eee;
+    border: 1px solid #d5d5d5;
+    border-radius: 3px;
+    @include user-select(none);
+    @include linear-gradient(#fcfcfc, #eee);
+
+    svg {
+      width: 16px;
+      height: 16px;
+      vertical-align: text-top;
+      fill: #333;
+    }
+  }
+
+  .btn-group {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 12px;
+
+    .btn {
+      border-radius: 0;
+
+      &:hover {
+        z-index: 2;
+        border-color: #ccc;
+        @include linear-gradient(#eee, #ddd);
+      }
+
+      &:focus {
+        z-index: 3;
+        outline: none;
+        border-color: #51a7e8;
+        box-shadow: 0 0 5px rgba(81,167,232,0.5);
+      }
+
+      &:active {
+        z-index: 2;
+        background-color: #dcdcdc;
+        background-image: none;
+        border-color: #b5b5b5;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.15);
+      }
+    }
+
+    .btn:last-child {
+      border-radius: 0 3px 3px 0;
+    }
+
+    .btn:first-child {
+      border-radius: 3px 0 0 3px; 
+    }
+  }
+}
