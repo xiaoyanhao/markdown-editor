@@ -18,23 +18,21 @@ class MarkdownEditor extends React.Component {
 
   toggleSlideToolbar() {
     let markdownEditor = this.refs.markdownEditor
-    console.log(markdownEditor)
-    markdownEditor.classList.toggle('slide-down')
+    // markdownEditor.classList.toggle('slide-down')
     markdownEditor.classList.toggle('slide-up')
   }
 
   toggleSlideEditor() {
-    let editor = this.refs.editor
-    console.log(editor)
-    editor.classList.toggle('slide-left')
-    editor.classList.toggle('slide-right')
+    let markdownEditor = this.refs.markdownEditor
+    // markdownEditor.classList.toggle('slide-left')
+    markdownEditor.classList.toggle('slide-right')
   }
 
   render() {
     return (
-      <div id='markdown-editor' className='slide-down' ref='markdownEditor'>
+      <div id='markdown-editor' ref='markdownEditor'>
         <Toolbar input={this.state.input} />
-        <div className='col-2 slide-left' ref='editor'>
+        <div className='col-2'>
           <Editor
             {...this.props}
             onInputChange={this.handleInputChange}

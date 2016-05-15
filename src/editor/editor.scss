@@ -1,10 +1,10 @@
 @import '../mixin';
 
 #editor {
-  display: inline-block;
+  position: absolute;
   width: 50%;
   height: 100%;
-  position: relative;
+  @include transition(width, $duration);
 
   svg {
     width: 22px;
@@ -12,14 +12,9 @@
     position: absolute;
     fill: #ddd;
     cursor: pointer;
-    @include transition(-webkit-transform, 700ms);
-    @include transition(-moz-transform, 700ms);
-    @include transition(-ms-transform, 700ms);
-    @include transition(-o-transform, 700ms);
-    @include transition(transform, 700ms);
+    @include transition(transform, $duration);
 
     &:hover {
-      // background-color: #f3f3f3;
       fill: #333;
     }
 
@@ -30,15 +25,11 @@
 
     &.slide-editor {
       right: 0;
-      top: 40%;
-    }
-
-    &.slide-down, &.slide-left {
-      @include rotate(0deg);
+      top: 45%;
     }
 
     &.slide-up, &.slide-right {
-      @include rotate(540deg);
+      @include transform(rotate(180deg));
     }
   }
 

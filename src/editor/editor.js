@@ -26,14 +26,14 @@ class Editor extends React.Component {
 
   render() {
     return (
-      <div id='editor' className='slide-left'>
-        <svg className='slide-toolbar slide-down' onClick={this.toggleSlideToolbar}>
+      <div id='editor'>
+        <svg className='slide-toolbar' onClick={this.toggleSlideToolbar}>
           <path d="M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z"></path>
         </svg>
-        <svg className='slide-editor slide-left' onClick={this.toggleSlideEditor}>
+        <svg className='slide-editor' onClick={this.toggleSlideEditor}>
           <path d='M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z'></path>
         </svg>
-        <textarea onKeyUp={this.handleInputChange}></textarea>
+        <textarea className='markdown-body' onKeyUp={this.handleInputChange}></textarea>
       </div>
     )
   }

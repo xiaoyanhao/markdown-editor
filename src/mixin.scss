@@ -1,3 +1,5 @@
+$duration: 600ms;
+
 @mixin user-select($value) {
   -webkit-user-select: $value;
   -moz-user-select: $value;
@@ -14,18 +16,18 @@
   background-image: linear-gradient($color-start, $color-end);
 }
 
-@mixin rotate($deg) {
-  -webkit-transform: rotate($deg);
-  -moz-transform: rotate($deg);
-  -ms-transform: rotate($deg);
-  -o-transform: rotate($deg);
-  transform: rotate($deg);
+@mixin transform($function) {
+  -webkit-transform: $function;
+  -moz-transform: $function;
+  -ms-transform: $function;
+  -o-transform: $function;
+  transform: $function;
 }
 
 @mixin transition($property, $duration: 0s, $timing-function: ease, $delay: 0s) {
-  -webkit-transition: $property $duration $timing-function $delay;
-  -moz-transition: $property $duration $timing-function $delay;
-  -ms-transition: $property $duration $timing-function $delay;
-  -o-transition: $property $duration $timing-function $delay;
+  -webkit-transition: -webkit- + $property $duration $timing-function $delay;
+  -moz-transition: -moz- + $property $duration $timing-function $delay;
+  -ms-transition: -ms- + $property $duration $timing-function $delay;
+  -o-transition: -o- + $property $duration $timing-function $delay;
   transition: $property $duration $timing-function $delay;
 }

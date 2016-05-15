@@ -1,9 +1,18 @@
+@import '../mixin';
+
 #previewer {
-  display: inline-block;
+  position: absolute;
+  left: 50%;
   width: 50%;
   height: 100%;
-  padding: 45px;
   border-left: 1px solid #ddd;
-  word-wrap: break-word;
-  overflow: scroll;
+  @include transition(left, $duration);
+
+  article {
+    width: 100%;
+    height: 100%;
+    padding: 45px;
+    word-wrap: break-word;
+    overflow: scroll;
+  }
 }

@@ -20,8 +20,10 @@ class Previewer extends React.Component {
 
   render() {
     return (
-      <article id='previewer' className='markdown-body slide-left' dangerouslySetInnerHTML={this.rawMarkup()}>
-      </article>
+      <div id='previewer'>
+        <article className='markdown-body' dangerouslySetInnerHTML={this.rawMarkup()}>
+        </article>
+      </div>
     )
   }
 }
