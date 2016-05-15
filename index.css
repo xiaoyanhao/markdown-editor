@@ -5,31 +5,49 @@ html, body {
   margin: 0;
   padding: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
 
 #markdown-editor {
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  position: relative; }
   #markdown-editor .col-2 {
+    position: relative;
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    padding-top: 48px;
+    -webkit-transition: -webkit-padding-top 600ms ease 0s;
+    -moz-transition: -moz-padding-top 600ms ease 0s;
+    -ms-transition: -ms-padding-top 600ms ease 0s;
+    -o-transition: -o-padding-top 600ms ease 0s;
+    transition: padding-top 600ms ease 0s; }
+  #markdown-editor.slide-up #toolbar {
+    top: -48px; }
+  #markdown-editor.slide-up .col-2 {
+    padding-top: 0; }
+  #markdown-editor.slide-right #editor {
+    width: 100%; }
+  #markdown-editor.slide-right #previewer {
+    left: 100%; }
 
 #toolbar {
-  position: relative;
+  position: absolute;
+  top: 0;
+  width: 100%;
   padding: 10px 45px;
   border-bottom: 1px solid #ddd;
-  -webkit-transition: top 700ms ease 0s;
-  -moz-transition: top 700ms ease 0s;
-  -ms-transition: top 700ms ease 0s;
-  -o-transition: top 700ms ease 0s;
-  transition: top 700ms ease 0s; }
+  -webkit-transition: -webkit-top 600ms ease 0s;
+  -moz-transition: -moz-top 600ms ease 0s;
+  -ms-transition: -ms-top 600ms ease 0s;
+  -o-transition: -o-top 600ms ease 0s;
+  transition: top 600ms ease 0s; }
   #toolbar .btn {
     position: relative;
-    /*float: left;*/
     font-size: 13px;
     font-weight: bold;
     width: 30px;
-    margin-left: -1px;
+    margin: 0 0 0 -1px;
     line-height: 20px;
     color: #333;
     white-space: nowrap;
@@ -84,41 +102,25 @@ html, body {
       border-radius: 3px 0 0 3px; }
 
 #editor {
-  display: inline-block;
+  position: absolute;
   width: 50%;
   height: 100%;
-  position: relative; }
+  -webkit-transition: -webkit-width 600ms ease 0s;
+  -moz-transition: -moz-width 600ms ease 0s;
+  -ms-transition: -ms-width 600ms ease 0s;
+  -o-transition: -o-width 600ms ease 0s;
+  transition: width 600ms ease 0s; }
   #editor svg {
     width: 22px;
     height: 24px;
     position: absolute;
     fill: #ddd;
     cursor: pointer;
-    -webkit-transition: -webkit-transform 700ms ease 0s;
-    -moz-transition: -webkit-transform 700ms ease 0s;
-    -ms-transition: -webkit-transform 700ms ease 0s;
-    -o-transition: -webkit-transform 700ms ease 0s;
-    transition: -webkit-transform 700ms ease 0s;
-    -webkit-transition: -moz-transform 700ms ease 0s;
-    -moz-transition: -moz-transform 700ms ease 0s;
-    -ms-transition: -moz-transform 700ms ease 0s;
-    -o-transition: -moz-transform 700ms ease 0s;
-    transition: -moz-transform 700ms ease 0s;
-    -webkit-transition: -ms-transform 700ms ease 0s;
-    -moz-transition: -ms-transform 700ms ease 0s;
-    -ms-transition: -ms-transform 700ms ease 0s;
-    -o-transition: -ms-transform 700ms ease 0s;
-    transition: -ms-transform 700ms ease 0s;
-    -webkit-transition: -o-transform 700ms ease 0s;
-    -moz-transition: -o-transform 700ms ease 0s;
-    -ms-transition: -o-transform 700ms ease 0s;
-    -o-transition: -o-transform 700ms ease 0s;
-    transition: -o-transform 700ms ease 0s;
-    -webkit-transition: transform 700ms ease 0s;
-    -moz-transition: transform 700ms ease 0s;
-    -ms-transition: transform 700ms ease 0s;
-    -o-transition: transform 700ms ease 0s;
-    transition: transform 700ms ease 0s; }
+    -webkit-transition: -webkit-transform 600ms ease 0s;
+    -moz-transition: -moz-transform 600ms ease 0s;
+    -ms-transition: -ms-transform 600ms ease 0s;
+    -o-transition: -o-transform 600ms ease 0s;
+    transition: transform 600ms ease 0s; }
     #editor svg:hover {
       fill: #333; }
     #editor svg.slide-toolbar {
@@ -126,19 +128,13 @@ html, body {
       top: 0; }
     #editor svg.slide-editor {
       right: 0;
-      top: 40%; }
-    #editor svg.slide-down, #editor svg.slide-left {
-      -webkit-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -ms-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg); }
+      top: 45%; }
     #editor svg.slide-up, #editor svg.slide-right {
-      -webkit-transform: rotate(540deg);
-      -moz-transform: rotate(540deg);
-      -ms-transform: rotate(540deg);
-      -o-transform: rotate(540deg);
-      transform: rotate(540deg); }
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg); }
   #editor textarea {
     width: 100%;
     height: 100%;
@@ -149,10 +145,19 @@ html, body {
     overflow: scroll; }
 
 #previewer {
-  display: inline-block;
+  position: absolute;
+  left: 50%;
   width: 50%;
   height: 100%;
-  padding: 45px;
   border-left: 1px solid #ddd;
-  word-wrap: break-word;
-  overflow: scroll; }
+  -webkit-transition: -webkit-left 600ms ease 0s;
+  -moz-transition: -moz-left 600ms ease 0s;
+  -ms-transition: -ms-left 600ms ease 0s;
+  -o-transition: -o-left 600ms ease 0s;
+  transition: left 600ms ease 0s; }
+  #previewer article {
+    width: 100%;
+    height: 100%;
+    padding: 45px;
+    word-wrap: break-word;
+    overflow: scroll; }

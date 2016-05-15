@@ -94,28 +94,26 @@
 	    key: 'toggleSlideToolbar',
 	    value: function toggleSlideToolbar() {
 	      var markdownEditor = this.refs.markdownEditor;
-	      console.log(markdownEditor);
-	      markdownEditor.classList.toggle('slide-down');
+	      // markdownEditor.classList.toggle('slide-down')
 	      markdownEditor.classList.toggle('slide-up');
 	    }
 	  }, {
 	    key: 'toggleSlideEditor',
 	    value: function toggleSlideEditor() {
-	      var editor = this.refs.editor;
-	      console.log(editor);
-	      editor.classList.toggle('slide-left');
-	      editor.classList.toggle('slide-right');
+	      var markdownEditor = this.refs.markdownEditor;
+	      // markdownEditor.classList.toggle('slide-left')
+	      markdownEditor.classList.toggle('slide-right');
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        { id: 'markdown-editor', className: 'slide-down', ref: 'markdownEditor' },
+	        { id: 'markdown-editor', ref: 'markdownEditor' },
 	        React.createElement(_toolbar2.default, { input: this.state.input }),
 	        React.createElement(
 	          'div',
-	          { className: 'col-2 slide-left', ref: 'editor' },
+	          { className: 'col-2' },
 	          React.createElement(_editor2.default, _extends({}, this.props, {
 	            onInputChange: this.handleInputChange,
 	            onToggleSlideToolbar: this.toggleSlideToolbar,
@@ -193,18 +191,18 @@
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        { id: 'editor', className: 'slide-left' },
+	        { id: 'editor' },
 	        React.createElement(
 	          'svg',
-	          { className: 'slide-toolbar slide-down', onClick: this.toggleSlideToolbar },
+	          { className: 'slide-toolbar', onClick: this.toggleSlideToolbar },
 	          React.createElement('path', { d: 'M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z' })
 	        ),
 	        React.createElement(
 	          'svg',
-	          { className: 'slide-editor slide-left', onClick: this.toggleSlideEditor },
+	          { className: 'slide-editor', onClick: this.toggleSlideEditor },
 	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
 	        ),
-	        React.createElement('textarea', { onKeyUp: this.handleInputChange })
+	        React.createElement('textarea', { className: 'markdown-body', onKeyUp: this.handleInputChange })
 	      );
 	    }
 	  }]);
@@ -259,7 +257,11 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return React.createElement('article', { id: 'previewer', className: 'markdown-body slide-left', dangerouslySetInnerHTML: this.rawMarkup() });
+	      return React.createElement(
+	        'div',
+	        { id: 'previewer' },
+	        React.createElement('article', { className: 'markdown-body', dangerouslySetInnerHTML: this.rawMarkup() })
+	      );
 	    }
 	  }]);
 
