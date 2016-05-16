@@ -1,14 +1,14 @@
 #previewer {
+  display: inline-block;
   position: absolute;
-  left: 50%;
   width: 50%;
   height: 100%;
   border-left: 1px solid #ddd;
-  -webkit-transition: -webkit-left 600ms ease 0s;
-  -moz-transition: -moz-left 600ms ease 0s;
-  -ms-transition: -ms-left 600ms ease 0s;
-  -o-transition: -o-left 600ms ease 0s;
-  transition: left 600ms ease 0s; }
+  -webkit-transition: -webkit-transform 600ms ease 0s;
+  -moz-transition: -moz-transform 600ms ease 0s;
+  -ms-transition: -ms-transform 600ms ease 0s;
+  -o-transition: -o-transform 600ms ease 0s;
+  transition: transform 600ms ease 0s; }
   #previewer article {
     width: 100%;
     height: 100%;

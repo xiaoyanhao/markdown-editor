@@ -1,5 +1,6 @@
 #editor {
-  position: absolute;
+  display: inline-block;
+  position: relative;
   width: 50%;
   height: 100%;
   -webkit-transition: -webkit-width 600ms ease 0s;
@@ -20,13 +21,13 @@
     transition: transform 600ms ease 0s; }
     #editor svg:hover {
       fill: #333; }
-    #editor svg.slide-toolbar {
+    #editor svg:first-child {
       right: 0;
       top: 0; }
-    #editor svg.slide-editor {
+    #editor svg:nth-child(2) {
       right: 0;
       top: 45%; }
-    #editor svg.slide-up, #editor svg.slide-right {
+    #editor svg.slide-toolbar, #editor svg.slide-editor {
       -webkit-transform: rotate(180deg);
       -moz-transform: rotate(180deg);
       -ms-transform: rotate(180deg);

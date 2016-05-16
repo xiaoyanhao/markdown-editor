@@ -4,11 +4,12 @@
   width: 100%;
   padding: 10px 45px;
   border-bottom: 1px solid #ddd;
-  -webkit-transition: -webkit-top 600ms ease 0s;
-  -moz-transition: -moz-top 600ms ease 0s;
-  -ms-transition: -ms-top 600ms ease 0s;
-  -o-transition: -o-top 600ms ease 0s;
-  transition: top 600ms ease 0s; }
+  z-index: 2;
+  -webkit-transition: -webkit-transform 600ms ease 0s;
+  -moz-transition: -moz-transform 600ms ease 0s;
+  -ms-transition: -ms-transform 600ms ease 0s;
+  -o-transition: -o-transform 600ms ease 0s;
+  transition: transform 600ms ease 0s; }
   #toolbar .btn {
     position: relative;
     font-size: 13px;
@@ -45,7 +46,7 @@
     #toolbar .btn-group .btn {
       border-radius: 0; }
       #toolbar .btn-group .btn:hover {
-        z-index: 2;
+        z-index: 3;
         border-color: #ccc;
         background-image: -webkit-linear-gradient(#eee, #ddd);
         background-image: -moz-linear-gradient(#eee, #ddd);
@@ -53,12 +54,12 @@
         background-image: -o-linear-gradient(#eee, #ddd);
         background-image: linear-gradient(#eee, #ddd); }
       #toolbar .btn-group .btn:focus {
-        z-index: 3;
+        z-index: 4;
         outline: none;
         border-color: #51a7e8;
         box-shadow: 0 0 5px rgba(81, 167, 232, 0.5); }
       #toolbar .btn-group .btn:active {
-        z-index: 2;
+        z-index: 3;
         background-color: #dcdcdc;
         background-image: none;
         border-color: #b5b5b5;

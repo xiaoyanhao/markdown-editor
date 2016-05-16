@@ -94,15 +94,13 @@
 	    key: 'toggleSlideToolbar',
 	    value: function toggleSlideToolbar() {
 	      var markdownEditor = this.refs.markdownEditor;
-	      // markdownEditor.classList.toggle('slide-down')
-	      markdownEditor.classList.toggle('slide-up');
+	      markdownEditor.classList.toggle('slide-toolbar');
 	    }
 	  }, {
 	    key: 'toggleSlideEditor',
 	    value: function toggleSlideEditor() {
 	      var markdownEditor = this.refs.markdownEditor;
-	      // markdownEditor.classList.toggle('slide-left')
-	      markdownEditor.classList.toggle('slide-right');
+	      markdownEditor.classList.toggle('slide-editor');
 	    }
 	  }, {
 	    key: 'render',
@@ -173,17 +171,13 @@
 	  }, {
 	    key: 'toggleSlideToolbar',
 	    value: function toggleSlideToolbar(event) {
-	      var svg = event.currentTarget;
-	      svg.classList.toggle('slide-down');
-	      svg.classList.toggle('slide-up');
+	      event.currentTarget.classList.toggle('slide-toolbar');
 	      this.props.onToggleSlideToolbar();
 	    }
 	  }, {
 	    key: 'toggleSlideEditor',
 	    value: function toggleSlideEditor(event) {
-	      var svg = event.currentTarget;
-	      svg.classList.toggle('slide-left');
-	      svg.classList.toggle('slide-right');
+	      event.currentTarget.classList.toggle('slide-editor');
 	      this.props.onToggleSlideEditor();
 	    }
 	  }, {
@@ -194,12 +188,12 @@
 	        { id: 'editor' },
 	        React.createElement(
 	          'svg',
-	          { className: 'slide-toolbar', onClick: this.toggleSlideToolbar },
+	          { onClick: this.toggleSlideToolbar },
 	          React.createElement('path', { d: 'M7.406 15.422l-1.406-1.406 6-6 6 6-1.406 1.406-4.594-4.594z' })
 	        ),
 	        React.createElement(
 	          'svg',
-	          { className: 'slide-editor', onClick: this.toggleSlideEditor },
+	          { onClick: this.toggleSlideEditor },
 	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
 	        ),
 	        React.createElement('textarea', { className: 'markdown-body', onKeyUp: this.handleInputChange })
