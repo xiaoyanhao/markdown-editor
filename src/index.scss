@@ -25,21 +25,22 @@ html, body {
     @include transition(padding-top, $duration);
   }
 
-  &.slide-up {
+  &.slide-toolbar {
     #toolbar {
-      top: -48px;
+      @include transform(translateY(-48px));
     }
     .col-2 {
       padding-top: 0;
     }
   }
 
-  &.slide-right {
+  &.slide-editor {
     #editor {
       width: 100%;
     }
     #previewer {
-      left: 100%;
+      // position: absolute;
+      @include transform(translateX(50%));
     }
   }
 }

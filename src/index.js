@@ -18,14 +18,12 @@ class MarkdownEditor extends React.Component {
 
   toggleSlideToolbar() {
     let markdownEditor = this.refs.markdownEditor
-    // markdownEditor.classList.toggle('slide-down')
-    markdownEditor.classList.toggle('slide-up')
+    markdownEditor.classList.toggle('slide-toolbar')
   }
 
   toggleSlideEditor() {
     let markdownEditor = this.refs.markdownEditor
-    // markdownEditor.classList.toggle('slide-left')
-    markdownEditor.classList.toggle('slide-right')
+    markdownEditor.classList.toggle('slide-editor')
   }
 
   render() {

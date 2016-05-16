@@ -6,7 +6,8 @@
   width: 100%;
   padding: 10px 45px;
   border-bottom: 1px solid #ddd;
-  @include transition(top, $duration);
+  z-index: 2;
+  @include transition(transform, $duration);
 
   .btn {
     position: relative;
@@ -42,20 +43,20 @@
       border-radius: 0;
 
       &:hover {
-        z-index: 2;
+        z-index: 3;
         border-color: #ccc;
         @include linear-gradient(#eee, #ddd);
       }
 
       &:focus {
-        z-index: 3;
+        z-index: 4;
         outline: none;
         border-color: #51a7e8;
         box-shadow: 0 0 5px rgba(81,167,232,0.5);
       }
 
       &:active {
-        z-index: 2;
+        z-index: 3;
         background-color: #dcdcdc;
         background-image: none;
         border-color: #b5b5b5;

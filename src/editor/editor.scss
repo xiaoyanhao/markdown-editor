@@ -1,7 +1,8 @@
 @import '../mixin';
 
 #editor {
-  position: absolute;
+  display: inline-block;
+  position: relative;
   width: 50%;
   height: 100%;
   @include transition(width, $duration);
@@ -18,17 +19,17 @@
       fill: #333;
     }
 
-    &.slide-toolbar {
+    &:first-child {
       right: 0;
       top: 0;
     }
 
-    &.slide-editor {
+    &:nth-child(2) {
       right: 0;
       top: 45%;
     }
 
-    &.slide-up, &.slide-right {
+    &.slide-toolbar, &.slide-editor {
       @include transform(rotate(180deg));
     }
   }

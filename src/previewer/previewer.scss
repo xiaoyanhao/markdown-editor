@@ -1,12 +1,12 @@
 @import '../mixin';
 
 #previewer {
+  display: inline-block;
   position: absolute;
-  left: 50%;
   width: 50%;
   height: 100%;
   border-left: 1px solid #ddd;
-  @include transition(left, $duration);
+  @include transition(transform, $duration);
 
   article {
     width: 100%;
