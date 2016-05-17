@@ -39,9 +39,9 @@ export const funcMap = {
     text: '1. ',
     selection: 0
   },
-  tasklist: {
-    text: '-[] ',
-    selection: 0
+  table: {
+    text: '\n| | |\n|-|-|\n| | |',
+    selection: -16
   },
   blockquote: {
     text: '> ',
