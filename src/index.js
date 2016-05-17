@@ -10,6 +10,7 @@ class MarkdownEditor extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.toggleSlideToolbar = this.toggleSlideToolbar.bind(this)
     this.toggleSlideEditor = this.toggleSlideEditor.bind(this)
+    this.handleToolbarFunc = this.handleToolbarFunc.bind(this)
   }
 
   handleInputChange(newInput) {
@@ -26,13 +27,20 @@ class MarkdownEditor extends React.Component {
     markdownEditor.classList.toggle('slide-editor')
   }
 
+  handleToolbarFunc(obj) {
+    this.refs.editor.appendTextAndFocus(obj)
+  }
+
   render() {
     return (
       <div id='markdown-editor' ref='markdownEditor'>
-        <Toolbar input={this.state.input} />
+        <Toolbar
+          input={this.state.input}
+          handleToolbarFunc={this.handleToolbarFunc}
+        />
         <div className='col-2'>
           <Editor
-            {...this.props}
+            ref='editor'
             onInputChange={this.handleInputChange}
             onToggleSlideToolbar={this.toggleSlideToolbar}
             onToggleSlideEditor={this.toggleSlideEditor}
@@ -53,3 +61,7 @@ ReactDOM.render(
   <MarkdownEditor />,
   document.getElementsByTagName('body')[0]
 )
+
+// window.onerror = function(message, source, lineno, colno, error) {
+//   console.error(message, source, lineno, colno, error)
+// }

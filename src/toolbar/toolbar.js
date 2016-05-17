@@ -1,11 +1,34 @@
+import {funcMap} from './funcMap'
+
 class Toolbar extends React.Component {
   constructor(props) {
     super(props)
+    this.handleToolbarFunc = this.handleToolbarFunc.bind(this)
+  }
+
+  handleToolbarFunc(event) {
+    event.stopPropagation()
+    let target = event.target
+
+    if (target === event.currentTarget) {
+      return false
+    }
+
+    while (target.tagName !== 'BUTTON') {
+      target = target.parentNode
+    }
+
+    let func = target.id.split('-')[1]
+
+    if (funcMap[func]) {
+      this.props.handleToolbarFunc(funcMap[func])
+    }
+
   }
 
   render() {
     return (
-      <div id='toolbar'>
+      <div id='toolbar' onClick={this.handleToolbarFunc}>
         <div className='btn-group'>
           <button type='button' title='Header 1' className='btn' id='toolbar-h1'><strong>h1</strong></button>
           <button type='button' title='Header 2' className='btn' id='toolbar-h2'><strong>h2</strong></button>

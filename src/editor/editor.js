@@ -20,6 +20,22 @@ class Editor extends React.Component {
     this.props.onToggleSlideEditor()
   }
 
+  appendTextAndFocus(obj) {
+    let input = this.refs.textarea
+    let length = input.value.length
+    let pos = input.selectionStart
+
+    if (pos != input.selectionEnd) {
+      pos = length
+    }
+
+    input.value = input.value.substring(0, pos) + obj.text + input.value.substring(pos)
+    pos += obj.text.length + obj.selection
+
+    input.setSelectionRange(pos, pos)
+    input.focus()
+  }
+
   render() {
     return (
       <div id='editor'>
@@ -29,7 +45,7 @@ class Editor extends React.Component {
         <svg onClick={this.toggleSlideEditor}>
           <path d='M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z'></path>
         </svg>
-        <textarea className='markdown-body' onKeyUp={this.handleInputChange}></textarea>
+        <textarea ref='textarea' className='markdown-body' onKeyUp={this.handleInputChange} autoFocus></textarea>
       </div>
     )
   }
