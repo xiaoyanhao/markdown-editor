@@ -46,8 +46,6 @@
 
 	'use strict';
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _editor = __webpack_require__(1);
@@ -82,6 +80,7 @@
 	    _this.handleInputChange = _this.handleInputChange.bind(_this);
 	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
 	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
+	    _this.handleToolbarFunc = _this.handleToolbarFunc.bind(_this);
 	    return _this;
 	  }
 
@@ -103,20 +102,29 @@
 	      markdownEditor.classList.toggle('slide-editor');
 	    }
 	  }, {
+	    key: 'handleToolbarFunc',
+	    value: function handleToolbarFunc(obj) {
+	      this.refs.editor.appendTextAndFocus(obj);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
 	        { id: 'markdown-editor', ref: 'markdownEditor' },
-	        React.createElement(_toolbar2.default, { input: this.state.input }),
+	        React.createElement(_toolbar2.default, {
+	          input: this.state.input,
+	          handleToolbarFunc: this.handleToolbarFunc
+	        }),
 	        React.createElement(
 	          'div',
 	          { className: 'col-2' },
-	          React.createElement(_editor2.default, _extends({}, this.props, {
+	          React.createElement(_editor2.default, {
+	            ref: 'editor',
 	            onInputChange: this.handleInputChange,
 	            onToggleSlideToolbar: this.toggleSlideToolbar,
 	            onToggleSlideEditor: this.toggleSlideEditor
-	          })),
+	          }),
 	          React.createElement(_previewer2.default, { input: this.state.input })
 	        )
 	      );
@@ -130,6 +138,10 @@
 	MarkdownEditor.defaultProps = { initialInput: null };
 
 	ReactDOM.render(React.createElement(MarkdownEditor, null), document.getElementsByTagName('body')[0]);
+
+	// window.onerror = function(message, source, lineno, colno, error) {
+	//   console.error(message, source, lineno, colno, error)
+	// }
 
 /***/ },
 /* 1 */
@@ -181,6 +193,23 @@
 	      this.props.onToggleSlideEditor();
 	    }
 	  }, {
+	    key: 'appendTextAndFocus',
+	    value: function appendTextAndFocus(obj) {
+	      var input = this.refs.textarea;
+	      var length = input.value.length;
+	      var pos = input.selectionStart;
+
+	      if (pos != input.selectionEnd) {
+	        pos = length;
+	      }
+
+	      input.value = input.value.substring(0, pos) + obj.text + input.value.substring(pos);
+	      pos += obj.text.length + obj.selection;
+
+	      input.setSelectionRange(pos, pos);
+	      input.focus();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
@@ -196,7 +225,7 @@
 	          { onClick: this.toggleSlideEditor },
 	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
 	        ),
-	        React.createElement('textarea', { className: 'markdown-body', onKeyUp: this.handleInputChange })
+	        React.createElement('textarea', { ref: 'textarea', className: 'markdown-body', onKeyUp: this.handleInputChange, autoFocus: true })
 	      );
 	    }
 	  }]);
@@ -266,7 +295,7 @@
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -275,6 +304,8 @@
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _funcMap = __webpack_require__(4);
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -288,15 +319,38 @@
 	  function Toolbar(props) {
 	    _classCallCheck(this, Toolbar);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Toolbar).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Toolbar).call(this, props));
+
+	    _this.handleToolbarFunc = _this.handleToolbarFunc.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Toolbar, [{
+	    key: 'handleToolbarFunc',
+	    value: function handleToolbarFunc(event) {
+	      event.stopPropagation();
+	      var target = event.target;
+
+	      if (target === event.currentTarget) {
+	        return false;
+	      }
+
+	      while (target.tagName !== 'BUTTON') {
+	        target = target.parentNode;
+	      }
+
+	      var func = target.id.split('-')[1];
+
+	      if (_funcMap.funcMap[func]) {
+	        this.props.handleToolbarFunc(_funcMap.funcMap[func]);
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        { id: 'toolbar' },
+	        { id: 'toolbar', onClick: this.handleToolbarFunc },
 	        React.createElement(
 	          'div',
 	          { className: 'btn-group' },
@@ -451,6 +505,70 @@
 	}(React.Component);
 
 	exports.default = Toolbar;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var funcMap = exports.funcMap = {
+	  h1: {
+	    text: '# ',
+	    selection: 0
+	  },
+	  h2: {
+	    text: '## ',
+	    selection: 0
+	  },
+	  h3: {
+	    text: '### ',
+	    selection: 0
+	  },
+	  link: {
+	    text: '[]()',
+	    selection: -3
+	  },
+	  image: {
+	    text: '![]()',
+	    selection: -3
+	  },
+	  bold: {
+	    text: '****',
+	    selection: -2
+	  },
+	  italic: {
+	    text: '__',
+	    selection: -1
+	  },
+	  code: {
+	    text: '``',
+	    selection: -1
+	  },
+	  ul: {
+	    text: '* ',
+	    selection: 0
+	  },
+	  ol: {
+	    text: '1. ',
+	    selection: 0
+	  },
+	  tasklist: {
+	    text: '-[] ',
+	    selection: 0
+	  },
+	  blockquote: {
+	    text: '> ',
+	    selection: 0
+	  },
+	  hr: {
+	    text: '\n***\n',
+	    selection: 0
+	  }
+	};
 
 /***/ }
 /******/ ]);
