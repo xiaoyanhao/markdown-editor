@@ -458,11 +458,11 @@
 	          ),
 	          React.createElement(
 	            'button',
-	            { type: 'button', title: 'Tasklist', className: 'btn', id: 'toolbar-tasklist' },
+	            { type: 'button', title: 'Table', className: 'btn', id: 'toolbar-table' },
 	            React.createElement(
 	              'svg',
 	              null,
-	              React.createElement('path', { d: 'M15.41 9H7.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h7.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1zM9.59 4c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1h5.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1H9.59zM0 3.91l1.41-1.3 1.59 1.59L7.09 0l1.41 1.41-5.5 5.5L0 3.91z m7.59 8.09h7.81c0.59 0 0.59 0.41 0.59 1s0 1-0.59 1H7.59c-0.59 0-0.59-0.41-0.59-1s0-1 0.59-1z' })
+	              React.createElement('path', { 'class': 'path1', d: 'M0 1v14h16v-14h-16zM6 10v-3h4v3h-4zM10 11v3h-4v-3h4zM10 3v3h-4v-3h4zM5 3v3h-4v-3h4zM1 7h4v3h-4v-3zM11 7h4v3h-4v-3zM11 6v-3h4v3h-4zM1 11h4v3h-4v-3zM11 14v-3h4v3h-4z' })
 	            )
 	          ),
 	          React.createElement(
@@ -486,7 +486,7 @@
 	        ),
 	        React.createElement(
 	          'a',
-	          { href: 'https://help.github.com/articles/basic-writing-and-formatting-syntax/', target: '_blank' },
+	          { href: 'https://help.github.com/categories/writing-on-github/', target: '_blank' },
 	          React.createElement(
 	            'button',
 	            { type: 'button', title: 'Help', className: 'btn', id: 'toolbar-help' },
@@ -556,9 +556,9 @@
 	    text: '1. ',
 	    selection: 0
 	  },
-	  tasklist: {
-	    text: '-[] ',
-	    selection: 0
+	  table: {
+	    text: '\n| | |\n|-|-|\n| | |',
+	    selection: -16
 	  },
 	  blockquote: {
 	    text: '> ',
