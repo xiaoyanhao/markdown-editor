@@ -52,9 +52,9 @@
 
 	var _editor2 = _interopRequireDefault(_editor);
 
-	var _previewer = __webpack_require__(2);
+	var _preview = __webpack_require__(2);
 
-	var _previewer2 = _interopRequireDefault(_previewer);
+	var _preview2 = _interopRequireDefault(_preview);
 
 	var _toolbar = __webpack_require__(3);
 
@@ -109,17 +109,15 @@
 	    }
 	  }, {
 	    key: 'syncScroll',
-	    value: function syncScroll(event) {
-	      // this.refs.previewer.scroll(percentage)
-	      console.log(event.target);
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      console.log('componentDidMount');
-	      window.addEventListener('scroll', function (event) {
-	        console.log(event.target);
-	      }, true);
+	    value: function syncScroll(target) {
+	      var tagName = target.tagName;
+	      var percentage = target.scrollTop / target.scrollHeight;
+
+	      if (tagName === 'TEXTAREA') {
+	        this.refs.preview.scroll(percentage);
+	      } else if (tagName === 'ARTICLE') {
+	        this.refs.editor.scroll(percentage);
+	      }
 	    }
 	  }, {
 	    key: 'render',
@@ -133,17 +131,18 @@
 	        }),
 	        React.createElement(
 	          'div',
-	          { className: 'col-2' },
+	          { className: 'col-2', ref: '' },
 	          React.createElement(_editor2.default, {
 	            ref: 'editor',
 	            onInputChange: this.handleInputChange,
 	            onToggleSlideToolbar: this.toggleSlideToolbar,
 	            onToggleSlideEditor: this.toggleSlideEditor,
-	            onScroll: this.syncScroll
+	            syncScroll: this.syncScroll
 	          }),
-	          React.createElement(_previewer2.default, {
-	            ref: 'previewer',
-	            input: this.state.input
+	          React.createElement(_preview2.default, {
+	            ref: 'preview',
+	            input: this.state.input,
+	            syncScroll: this.syncScroll
 	          })
 	        )
 	      );
@@ -191,7 +190,8 @@
 	    _this.handleInputChange = _this.handleInputChange.bind(_this);
 	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
 	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
-	    _this.syncWithPreviewer = _this.syncWithPreviewer.bind(_this);
+	    _this.syncScrollWithPreview = _this.syncScrollWithPreview.bind(_this);
+	    _this.scroll = _this.scroll.bind(_this);
 	    return _this;
 	  }
 
@@ -231,10 +231,26 @@
 	      input.focus();
 	    }
 	  }, {
-	    key: 'syncWithPreviewer',
-	    value: function syncWithPreviewer(event) {
-	      console.log(event.target.scrollTop, event.target.scrollHeight);
-	      this.props.syncScroll(event.target.scrollTop / event.target.scrollHeight);
+	    key: 'syncScrollWithPreview',
+	    value: function syncScrollWithPreview(event) {
+	      this.props.syncScroll(event.currentTarget);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var that = this;
+	      this.refs.textarea.addEventListener('mouseenter', function (event) {
+	        event.currentTarget.addEventListener('scroll', that.syncScrollWithPreview);
+	      });
+
+	      this.refs.textarea.addEventListener('mouseleave', function (event) {
+	        event.currentTarget.removeEventListener('scroll', that.syncScrollWithPreview);
+	      });
+	    }
+	  }, {
+	    key: 'scroll',
+	    value: function scroll(percentage) {
+	      this.refs.textarea.scrollTop = this.refs.textarea.scrollHeight * percentage;
 	    }
 	  }, {
 	    key: 'render',
@@ -291,19 +307,20 @@
 	  }
 	});
 
-	var Previewer = function (_React$Component) {
-	  _inherits(Previewer, _React$Component);
+	var Preview = function (_React$Component) {
+	  _inherits(Preview, _React$Component);
 
-	  function Previewer(props) {
-	    _classCallCheck(this, Previewer);
+	  function Preview(props) {
+	    _classCallCheck(this, Preview);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Previewer).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Preview).call(this, props));
 
 	    _this.scroll = _this.scroll.bind(_this);
+	    _this.syncScrollWithEditor = _this.syncScrollWithEditor.bind(_this);
 	    return _this;
 	  }
 
-	  _createClass(Previewer, [{
+	  _createClass(Preview, [{
 	    key: 'rawMarkup',
 	    value: function rawMarkup() {
 	      var rawMarkup = this.props.input;
@@ -313,18 +330,33 @@
 	      return { __html: rawMarkup };
 	    }
 	  }, {
+	    key: 'syncScrollWithEditor',
+	    value: function syncScrollWithEditor(event) {
+	      this.props.syncScroll(event.currentTarget);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var that = this;
+	      this.refs.article.addEventListener('mouseenter', function (event) {
+	        event.currentTarget.addEventListener('scroll', that.syncScrollWithEditor);
+	      });
+
+	      this.refs.article.addEventListener('mouseleave', function (event) {
+	        event.currentTarget.removeEventListener('scroll', that.syncScrollWithEditor);
+	      });
+	    }
+	  }, {
 	    key: 'scroll',
 	    value: function scroll(percentage) {
-	      var previewer = this.refs.article;
-	      console.log(percentage * previewer.scrollHeight, previewer.scrollHeight);
-	      previewer.scrollTop = percentage * previewer.scrollHeight;
+	      this.refs.article.scrollTop = this.refs.article.scrollHeight * percentage;
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
-	        { id: 'previewer' },
+	        { id: 'preview' },
 	        React.createElement('article', {
 	          ref: 'article',
 	          className: 'markdown-body',
@@ -334,10 +366,10 @@
 	    }
 	  }]);
 
-	  return Previewer;
+	  return Preview;
 	}(React.Component);
 
-	exports.default = Previewer;
+	exports.default = Preview;
 
 /***/ },
 /* 3 */
