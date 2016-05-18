@@ -38,7 +38,7 @@ html, body {
     #editor {
       width: 100%;
     }
-    #previewer {
+    #preview {
       @include transform(translateX(100%));
     }
   }
@@ -46,4 +46,4 @@ html, body {
 
 @import './toolbar/toolbar';
 @import './editor/editor';
-@import './previewer/previewer';
+@import './preview/preview';

@@ -4,7 +4,8 @@ class Editor extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.toggleSlideToolbar = this.toggleSlideToolbar.bind(this)
     this.toggleSlideEditor = this.toggleSlideEditor.bind(this)
-    this.syncWithPreviewer = this.syncWithPreviewer.bind(this)
+    this.syncScrollWithPreview = this.syncScrollWithPreview.bind(this)
+    this.scroll = this.scroll.bind(this)
   }
 
   handleInputChange(event) {
@@ -38,9 +39,23 @@ class Editor extends React.Component {
     input.focus()
   }
 
-  syncWithPreviewer(event) {
-    console.log(event.target.scrollTop, event.target.scrollHeight)
-    this.props.syncScroll(event.target.scrollTop / event.target.scrollHeight)
+  syncScrollWithPreview(event) {
+    this.props.syncScroll(event.currentTarget)
+  }
+
+  componentDidMount() {
+    let that = this
+    this.refs.textarea.addEventListener('mouseenter', (event) => {
+      event.currentTarget.addEventListener('scroll', that.syncScrollWithPreview)
+    })
+
+    this.refs.textarea.addEventListener('mouseleave', (event) => {
+      event.currentTarget.removeEventListener('scroll', that.syncScrollWithPreview)
+    })
+  }
+
+  scroll(percentage) {
+    this.refs.textarea.scrollTop = this.refs.textarea.scrollHeight * percentage
   }
 
   render() {

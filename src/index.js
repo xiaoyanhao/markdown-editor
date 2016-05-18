@@ -1,5 +1,5 @@
 import Editor from './editor/editor'
-import Previewer from './previewer/previewer'
+import Preview from './preview/preview'
 import Toolbar from './toolbar/toolbar'
 
 
@@ -32,16 +32,15 @@ class MarkdownEditor extends React.Component {
     this.refs.editor.appendTextAndFocus(obj)
   }
 
-  syncScroll(event) {
-    // this.refs.previewer.scroll(percentage)
-    console.log(event.target)
-  }
+  syncScroll(target) {
+    let tagName = target.tagName
+    let percentage = target.scrollTop / target.scrollHeight
 
-  componentDidMount() {
-    console.log('componentDidMount')
-    window.addEventListener('scroll', (event) => {
-      console.log(event.target)
-    }, true)
+    if (tagName === 'TEXTAREA') {
+      this.refs.preview.scroll(percentage)
+    } else if (tagName === 'ARTICLE') {
+      this.refs.editor.scroll(percentage)
+    }
   }
 
   render() {
@@ -51,17 +50,18 @@ class MarkdownEditor extends React.Component {
           input={this.state.input}
           handleToolbarFunc={this.handleToolbarFunc}
         />
-        <div className='col-2'>
+        <div className='col-2' ref=''>
           <Editor
             ref='editor'
             onInputChange={this.handleInputChange}
             onToggleSlideToolbar={this.toggleSlideToolbar}
             onToggleSlideEditor={this.toggleSlideEditor}
-            onScroll={this.syncScroll}
+            syncScroll={this.syncScroll}
           />
-          <Previewer
-            ref='previewer'
+          <Preview
+            ref='preview'
             input={this.state.input}
+            syncScroll={this.syncScroll}
           />
         </div>
       </div>
