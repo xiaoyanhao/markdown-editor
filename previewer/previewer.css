@@ -1,6 +1,7 @@
 #previewer {
-  display: inline-block;
-  position: absolute;
+  position: relative;
+  top: -100%;
+  left: 50%;
   width: 50%;
   height: 100%;
   border-left: 1px solid #ddd;

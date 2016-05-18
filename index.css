@@ -33,11 +33,11 @@ html, body {
   #markdown-editor.slide-editor #editor {
     width: 100%; }
   #markdown-editor.slide-editor #previewer {
-    -webkit-transform: translateX(50%);
-    -moz-transform: translateX(50%);
-    -ms-transform: translateX(50%);
-    -o-transform: translateX(50%);
-    transform: translateX(50%); }
+    -webkit-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%); }
 
 #toolbar {
   position: absolute;
@@ -107,7 +107,6 @@ html, body {
       border-radius: 3px 0 0 3px; }
 
 #editor {
-  display: inline-block;
   position: relative;
   width: 50%;
   height: 100%;
@@ -148,11 +147,12 @@ html, body {
     border: none;
     outline: none;
     word-wrap: break-word;
-    overflow: scroll; }
+    resize: vertical; }
 
 #previewer {
-  display: inline-block;
-  position: absolute;
+  position: relative;
+  top: -100%;
+  left: 50%;
   width: 50%;
   height: 100%;
   border-left: 1px solid #ddd;

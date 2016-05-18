@@ -81,6 +81,7 @@
 	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
 	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
 	    _this.handleToolbarFunc = _this.handleToolbarFunc.bind(_this);
+	    _this.syncScroll = _this.syncScroll.bind(_this);
 	    return _this;
 	  }
 
@@ -107,6 +108,20 @@
 	      this.refs.editor.appendTextAndFocus(obj);
 	    }
 	  }, {
+	    key: 'syncScroll',
+	    value: function syncScroll(event) {
+	      // this.refs.previewer.scroll(percentage)
+	      console.log(event.target);
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log('componentDidMount');
+	      window.addEventListener('scroll', function (event) {
+	        console.log(event.target);
+	      }, true);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
@@ -123,9 +138,13 @@
 	            ref: 'editor',
 	            onInputChange: this.handleInputChange,
 	            onToggleSlideToolbar: this.toggleSlideToolbar,
-	            onToggleSlideEditor: this.toggleSlideEditor
+	            onToggleSlideEditor: this.toggleSlideEditor,
+	            onScroll: this.syncScroll
 	          }),
-	          React.createElement(_previewer2.default, { input: this.state.input })
+	          React.createElement(_previewer2.default, {
+	            ref: 'previewer',
+	            input: this.state.input
+	          })
 	        )
 	      );
 	    }
@@ -172,12 +191,14 @@
 	    _this.handleInputChange = _this.handleInputChange.bind(_this);
 	    _this.toggleSlideToolbar = _this.toggleSlideToolbar.bind(_this);
 	    _this.toggleSlideEditor = _this.toggleSlideEditor.bind(_this);
+	    _this.syncWithPreviewer = _this.syncWithPreviewer.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(Editor, [{
 	    key: 'handleInputChange',
 	    value: function handleInputChange(event) {
+	      event.target.scrollTop = event.target.scrollHeight;
 	      this.props.onInputChange(event.target.value);
 	    }
 	  }, {
@@ -210,6 +231,12 @@
 	      input.focus();
 	    }
 	  }, {
+	    key: 'syncWithPreviewer',
+	    value: function syncWithPreviewer(event) {
+	      console.log(event.target.scrollTop, event.target.scrollHeight);
+	      this.props.syncScroll(event.target.scrollTop / event.target.scrollHeight);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
@@ -225,7 +252,12 @@
 	          { onClick: this.toggleSlideEditor },
 	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
 	        ),
-	        React.createElement('textarea', { ref: 'textarea', className: 'markdown-body', onKeyUp: this.handleInputChange, autoFocus: true })
+	        React.createElement('textarea', {
+	          autoFocus: true,
+	          ref: 'textarea',
+	          className: 'markdown-body',
+	          onKeyUp: this.handleInputChange
+	        })
 	      );
 	    }
 	  }]);
@@ -265,7 +297,10 @@
 	  function Previewer(props) {
 	    _classCallCheck(this, Previewer);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Previewer).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Previewer).call(this, props));
+
+	    _this.scroll = _this.scroll.bind(_this);
+	    return _this;
 	  }
 
 	  _createClass(Previewer, [{
@@ -278,12 +313,23 @@
 	      return { __html: rawMarkup };
 	    }
 	  }, {
+	    key: 'scroll',
+	    value: function scroll(percentage) {
+	      var previewer = this.refs.article;
+	      console.log(percentage * previewer.scrollHeight, previewer.scrollHeight);
+	      previewer.scrollTop = percentage * previewer.scrollHeight;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
 	        'div',
 	        { id: 'previewer' },
-	        React.createElement('article', { className: 'markdown-body', dangerouslySetInnerHTML: this.rawMarkup() })
+	        React.createElement('article', {
+	          ref: 'article',
+	          className: 'markdown-body',
+	          dangerouslySetInnerHTML: this.rawMarkup()
+	        })
 	      );
 	    }
 	  }]);
