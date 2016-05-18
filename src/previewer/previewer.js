@@ -8,6 +8,7 @@ marked.setOptions({
 class Previewer extends React.Component {
   constructor(props) {
     super(props)
+    this.scroll = this.scroll.bind(this)
   }
 
   rawMarkup() {
@@ -18,10 +19,20 @@ class Previewer extends React.Component {
     return {__html: rawMarkup}
   }
 
+  scroll(percentage) {
+    let previewer = this.refs.article
+    console.log(percentage * previewer.scrollHeight, previewer.scrollHeight)
+    previewer.scrollTop = percentage * previewer.scrollHeight
+  }
+
   render() {
     return (
       <div id='previewer'>
-        <article className='markdown-body' dangerouslySetInnerHTML={this.rawMarkup()}>
+        <article
+          ref='article'
+          className='markdown-body'
+          dangerouslySetInnerHTML={this.rawMarkup()}
+        >
         </article>
       </div>
     )

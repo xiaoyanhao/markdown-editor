@@ -1,7 +1,6 @@
 @import '../mixin';
 
 #editor {
-  display: inline-block;
   position: relative;
   width: 50%;
   height: 100%;
@@ -41,6 +40,6 @@
     border: none;
     outline: none;
     word-wrap: break-word;
-    overflow: scroll;
+    resize: vertical;
   }
 }

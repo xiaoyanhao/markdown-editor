@@ -11,6 +11,7 @@ class MarkdownEditor extends React.Component {
     this.toggleSlideToolbar = this.toggleSlideToolbar.bind(this)
     this.toggleSlideEditor = this.toggleSlideEditor.bind(this)
     this.handleToolbarFunc = this.handleToolbarFunc.bind(this)
+    this.syncScroll = this.syncScroll.bind(this)
   }
 
   handleInputChange(newInput) {
@@ -31,6 +32,18 @@ class MarkdownEditor extends React.Component {
     this.refs.editor.appendTextAndFocus(obj)
   }
 
+  syncScroll(event) {
+    // this.refs.previewer.scroll(percentage)
+    console.log(event.target)
+  }
+
+  componentDidMount() {
+    console.log('componentDidMount')
+    window.addEventListener('scroll', (event) => {
+      console.log(event.target)
+    }, true)
+  }
+
   render() {
     return (
       <div id='markdown-editor' ref='markdownEditor'>
@@ -44,8 +57,12 @@ class MarkdownEditor extends React.Component {
             onInputChange={this.handleInputChange}
             onToggleSlideToolbar={this.toggleSlideToolbar}
             onToggleSlideEditor={this.toggleSlideEditor}
+            onScroll={this.syncScroll}
           />
-          <Previewer input={this.state.input} />
+          <Previewer
+            ref='previewer'
+            input={this.state.input}
+          />
         </div>
       </div>
     )

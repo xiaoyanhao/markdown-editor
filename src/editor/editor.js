@@ -4,9 +4,11 @@ class Editor extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this)
     this.toggleSlideToolbar = this.toggleSlideToolbar.bind(this)
     this.toggleSlideEditor = this.toggleSlideEditor.bind(this)
+    this.syncWithPreviewer = this.syncWithPreviewer.bind(this)
   }
 
   handleInputChange(event) {
+    event.target.scrollTop = event.target.scrollHeight
     this.props.onInputChange(event.target.value)
   }
 
@@ -36,6 +38,11 @@ class Editor extends React.Component {
     input.focus()
   }
 
+  syncWithPreviewer(event) {
+    console.log(event.target.scrollTop, event.target.scrollHeight)
+    this.props.syncScroll(event.target.scrollTop / event.target.scrollHeight)
+  }
+
   render() {
     return (
       <div id='editor'>
@@ -45,7 +52,13 @@ class Editor extends React.Component {
         <svg onClick={this.toggleSlideEditor}>
           <path d='M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z'></path>
         </svg>
-        <textarea ref='textarea' className='markdown-body' onKeyUp={this.handleInputChange} autoFocus></textarea>
+        <textarea
+          autoFocus
+          ref='textarea'
+          className='markdown-body'
+          onKeyUp={this.handleInputChange}
+        >
+        </textarea>
       </div>
     )
   }
