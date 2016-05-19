@@ -93,6 +93,12 @@ class Toolbar extends React.Component {
             </svg>
           </button>
         </a>
+
+        <div className='print-hint'>
+          <i>
+            <kbd>⌘p</kbd> or <kbd>⌃p</kbd> to print the preview only
+          </i>
+        </div>
       </div>
     )
   }
