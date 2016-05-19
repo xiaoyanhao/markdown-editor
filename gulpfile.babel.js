@@ -43,7 +43,7 @@ gulp.task('bower', () => {
   let mainFiles = [
     'bower_components/github-markdown-css/github-markdown.css',
     'bower_components/highlightjs/styles/github-gist.css',
-    'bower_components/react/react-with-addons.min.js',
+    'bower_components/react/react.min.js',
     'bower_components/react/react-dom.min.js',
     'bower_components/marked/marked.min.js',
     'bower_components/highlightjs/highlight.pack.min.js'
