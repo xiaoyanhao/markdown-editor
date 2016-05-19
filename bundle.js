@@ -400,6 +400,7 @@
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Toolbar).call(this, props));
 
 	    _this.handleToolbarFunc = _this.handleToolbarFunc.bind(_this);
+	    _this.handleImages = _this.handleImages.bind(_this);
 	    return _this;
 	  }
 
@@ -415,12 +416,30 @@
 
 	      while (target.tagName !== 'BUTTON') {
 	        target = target.parentNode;
+	        if (!target) {
+	          return false;
+	        }
 	      }
 
 	      var func = target.id.split('-')[1];
 
 	      if (_funcMap.funcMap[func]) {
 	        this.props.handleToolbarFunc(_funcMap.funcMap[func]);
+	      } else if (func == 'upload') {
+	        target.firstChild.click();
+	      }
+	    }
+	  }, {
+	    key: 'handleImages',
+	    value: function handleImages(event) {
+	      var files = event.currentTarget.files;
+	      for (var i = 0; i < files.length; i++) {
+	        var url = window.URL.createObjectURL(files[i]);
+	        var func = {
+	          text: '![](' + url + ')',
+	          selection: 0
+	        };
+	        this.props.handleToolbarFunc(func);
 	      }
 	    }
 	  }, {
@@ -479,6 +498,16 @@
 	              'svg',
 	              null,
 	              React.createElement('path', { d: 'M6 5h2v2H6V5z m6-0.5v9.5c0 0.55-0.45 1-1 1H1c-0.55 0-1-0.45-1-1V2c0-0.55 0.45-1 1-1h7.5l3.5 3.5z m-1 0.5L8 2H1v11l3-5 2 4 2-2 3 3V5z' })
+	            )
+	          ),
+	          React.createElement(
+	            'button',
+	            { type: 'button', title: 'Upload Image', className: 'btn', id: 'toolbar-upload' },
+	            React.createElement('input', { type: 'file', name: 'image', accept: 'image/*', onChange: this.handleImages, multiple: true, hidden: true }),
+	            React.createElement(
+	              'svg',
+	              null,
+	              React.createElement('path', { d: 'M8 11h4c1.381 0 2.5-1.122 2.5-2.5 0-1.048-0.643-1.946-1.559-2.317v0c-0.261-1.247-1.367-2.183-2.691-2.183-0.431 0-0.84 0.099-1.203 0.276-0.601-1.061-1.741-1.776-3.047-1.776-1.933 0-3.5 1.567-3.5 3.5 0 0.069 0.002 0.138 0.006 0.206v0c-0.886 0.385-1.506 1.269-1.506 2.294 0 1.381 1.116 2.5 2.5 2.5h4v-3l-1.625 1.625-0.375-0.375 2.25-2.25 2.25 2.25-0.375 0.375-1.625-1.625v3zM7.5 11v2.5h0.5v-2.5h-0.5z' })
 	            )
 	          )
 	        ),
