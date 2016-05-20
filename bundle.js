@@ -134,6 +134,7 @@
 	          { className: 'col-2', ref: '' },
 	          React.createElement(_editor2.default, {
 	            ref: 'editor',
+	            cachedInput: this.props.initialInput,
 	            onInputChange: this.handleInputChange,
 	            onToggleSlideToolbar: this.toggleSlideToolbar,
 	            onToggleSlideEditor: this.toggleSlideEditor,
@@ -152,14 +153,18 @@
 	  return MarkdownEditor;
 	}(React.Component);
 
-	MarkdownEditor.propTypes = { initialInput: React.PropTypes.string };
-	MarkdownEditor.defaultProps = { initialInput: null };
+	MarkdownEditor.propTypes = {
+	  initialInput: React.PropTypes.string
+	};
+	MarkdownEditor.defaultProps = {
+	  initialInput: localStorage.getItem('cachedInput')
+	};
 
 	ReactDOM.render(React.createElement(MarkdownEditor, null), document.getElementsByTagName('body')[0]);
 
-	// window.onerror = function(message, source, lineno, colno, error) {
-	//   console.error(message, source, lineno, colno, error)
-	// }
+	window.onunload = function () {
+	  localStorage.setItem('cachedInput', document.getElementsByTagName('textarea')[0].value);
+	};
 
 /***/ },
 /* 1 */
@@ -268,12 +273,16 @@
 	          { onClick: this.toggleSlideEditor },
 	          React.createElement('path', { d: 'M9.984 6l6 6-6 6-1.406-1.406 4.594-4.594-4.594-4.594z' })
 	        ),
-	        React.createElement('textarea', {
-	          autoFocus: true,
-	          ref: 'textarea',
-	          className: 'markdown-body',
-	          onKeyUp: this.handleInputChange
-	        })
+	        React.createElement(
+	          'textarea',
+	          {
+	            autoFocus: true,
+	            ref: 'textarea',
+	            className: 'markdown-body',
+	            onKeyUp: this.handleInputChange
+	          },
+	          this.props.cachedInput
+	        )
 	      );
 	    }
 	  }]);
