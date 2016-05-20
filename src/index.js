@@ -53,6 +53,7 @@ class MarkdownEditor extends React.Component {
         <div className='col-2' ref=''>
           <Editor
             ref='editor'
+            cachedInput={this.props.initialInput}
             onInputChange={this.handleInputChange}
             onToggleSlideToolbar={this.toggleSlideToolbar}
             onToggleSlideEditor={this.toggleSlideEditor}
@@ -70,8 +71,12 @@ class MarkdownEditor extends React.Component {
 }
 
 
-MarkdownEditor.propTypes = {initialInput: React.PropTypes.string}
-MarkdownEditor.defaultProps = {initialInput: null}
+MarkdownEditor.propTypes = {
+  initialInput: React.PropTypes.string
+}
+MarkdownEditor.defaultProps = {
+  initialInput: localStorage.getItem('cachedInput')
+}
 
 
 ReactDOM.render(
@@ -79,6 +84,10 @@ ReactDOM.render(
   document.getElementsByTagName('body')[0]
 )
 
-// window.onerror = function(message, source, lineno, colno, error) {
-//   console.error(message, source, lineno, colno, error)
-// }
+
+window.onunload = () => {
+  localStorage.setItem(
+    'cachedInput',
+    document.getElementsByTagName('textarea')[0].value
+  )
+}

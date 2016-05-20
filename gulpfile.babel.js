@@ -24,7 +24,7 @@ gulp.task('html', () => {
 gulp.task('scss', () => {
   return gulp.src('src/**/*.scss')
     .pipe(scss())
-    // .pipe(cleanCSS())
+    .pipe(cleanCSS())
     .pipe(gulp.dest('dist'))
     .pipe(browserSync.stream())
 })
@@ -34,7 +34,7 @@ gulp.task('babel', () => {
   return gulp.src('src/**/*.js')
     .pipe(babel())
     .pipe(webpack(webpackConfig))
-    // .pipe(uglify())
+    .pipe(uglify())
     .pipe(gulp.dest('dist'))
 })
 

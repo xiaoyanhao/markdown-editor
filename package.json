@@ -12,7 +12,9 @@
   },
   "keywords": [
     "markdown",
-    "editor"
+    "editor",
+    "github flavored markdown",
+    "GFM"
   ],
   "author": "xiaoyanhao",
   "license": "MIT",

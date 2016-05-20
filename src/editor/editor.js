@@ -73,6 +73,7 @@ class Editor extends React.Component {
           className='markdown-body'
           onKeyUp={this.handleInputChange}
         >
+          {this.props.cachedInput}
         </textarea>
       </div>
     )
