@@ -1,6 +1,7 @@
 import Editor from './editor/editor'
 import Preview from './preview/preview'
 import Toolbar from './toolbar/toolbar'
+import {readme} from './data/readme'
 
 
 class MarkdownEditor extends React.Component {
@@ -74,8 +75,16 @@ class MarkdownEditor extends React.Component {
 MarkdownEditor.propTypes = {
   initialInput: React.PropTypes.string
 }
-MarkdownEditor.defaultProps = {
-  initialInput: localStorage.getItem('cachedInput')
+
+let initialInput = localStorage.getItem('cachedInput')
+if (!initialInput) {
+  MarkdownEditor.defaultProps = {
+    initialInput: readme
+  }
+} else {
+  MarkdownEditor.defaultProps = {
+    initialInput: initialInput
+  }
 }
 
 

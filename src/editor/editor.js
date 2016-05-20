@@ -9,7 +9,7 @@ class Editor extends React.Component {
   }
 
   handleInputChange(event) {
-    event.target.scrollTop = event.target.scrollHeight
+    // event.target.scrollTop = event.target.scrollHeight
     this.props.onInputChange(event.target.value)
   }
 
