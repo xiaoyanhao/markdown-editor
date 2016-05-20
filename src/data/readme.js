@@ -1,5 +1,5 @@
-export const readme = `
-# Github Flavored Markdown Editor
+export const readme = 
+`# Github Flavored Markdown Editor
 A simple, convenient and efficient github flavored markdown editor based on [react](https://github.com/facebook/react), [marked](https://github.com/chjj/marked) and [highlight.js](https://github.com/isagalaev/highlight.js).
 
 ## Features
@@ -24,7 +24,7 @@ A simple, convenient and efficient github flavored markdown editor based on [rea
 ## Usage
 1. Get started with writing and formatting on [github tutorial](https://help.github.com/categories/writing-on-github/).
 2. For more information, see Daring Fireball's ["Markdown Syntax"](https://daringfireball.net/projects/markdown/syntax).
-3. Already familiar with the above? [Go head and write](http://xiaoyanhao.github.io/markdown-editor/)!
+3. Already familiar with the above? [Go head and write](https://xiaoyanhao.github.io/markdown-editor/)!
 
 ## License
 Under the MIT license. See [LICENSE](https://github.com/xiaoyanhao/markdown-editor/blob/master/LICENSE) file for more details.
