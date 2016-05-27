@@ -1,5 +1,5 @@
 export const readme = 
-`# Github Flavored Markdown Editor
+`# GitHub Flavored Markdown Editor
 A simple, convenient and efficient github flavored markdown editor based on [react](https://github.com/facebook/react), [marked](https://github.com/chjj/marked) and [highlight.js](https://github.com/isagalaev/highlight.js).
 
 ## Features
