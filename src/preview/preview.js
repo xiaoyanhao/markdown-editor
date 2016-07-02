@@ -36,7 +36,8 @@ class Preview extends React.Component {
   }
 
   scroll(percentage) {
-    this.refs.article.scrollTop = this.refs.article.scrollHeight * percentage
+    this.refs.article.scrollTop =
+    (this.refs.article.scrollHeight - this.refs.article.offsetHeight) * percentage
   }
 
   render() {

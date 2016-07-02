@@ -55,7 +55,8 @@ class Editor extends React.Component {
   }
 
   scroll(percentage) {
-    this.refs.textarea.scrollTop = this.refs.textarea.scrollHeight * percentage
+    this.refs.textarea.scrollTop =
+    (this.refs.textarea.scrollHeight - this.refs.textarea.offsetHeight) * percentage
   }
 
   render() {

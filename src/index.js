@@ -35,7 +35,7 @@ class MarkdownEditor extends React.Component {
 
   syncScroll(target) {
     let tagName = target.tagName
-    let percentage = target.scrollTop / target.scrollHeight
+    let percentage = target.scrollTop / (target.scrollHeight - target.offsetHeight)
 
     if (tagName === 'TEXTAREA') {
       this.refs.preview.scroll(percentage)
