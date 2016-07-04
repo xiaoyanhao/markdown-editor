@@ -8,10 +8,11 @@ const webpackConfig = require('./webpack.config.js')
 const ghPages = require('gulp-gh-pages')
 const uglify = require('gulp-uglify')
 const cleanCSS = require('gulp-clean-css')
+const gulpBowerFilesFromHtml = require('gulp-bower-files-from-html')
 
 // clean dist directory
 gulp.task('clean', cb => {
-  rimraf('./dist', cb)
+  rimraf('dist', cb)
 })
 
 // copy html into dist directory
@@ -31,7 +32,7 @@ gulp.task('scss', () => {
 
 // transform es6 to es5
 gulp.task('babel', () => {
-  return gulp.src('src/**/*.js')
+  return gulp.src(['src/**/*.js', '!src/bower_components/**/*.js'])
     .pipe(babel())
     .pipe(webpack(webpackConfig))
     .pipe(uglify())
@@ -40,16 +41,8 @@ gulp.task('babel', () => {
 
 // copy bower_components into dist directory
 gulp.task('bower', () => {
-  let mainFiles = [
-    'bower_components/github-markdown-css/github-markdown.css',
-    'bower_components/highlightjs/styles/github-gist.css',
-    'bower_components/react/react.min.js',
-    'bower_components/react/react-dom.min.js',
-    'bower_components/marked/marked.min.js',
-    'bower_components/highlightjs/highlight.pack.min.js'
-  ]
-
-  return gulp.src(mainFiles, {base: './'})
+  return gulp.src('src/index.html', {base: './'})
+    .pipe(gulpBowerFilesFromHtml())
     .pipe(gulp.dest('dist'))
 })
 
@@ -57,7 +50,7 @@ gulp.task('bower', () => {
 gulp.task('serve', ['bower', 'scss', 'babel', 'html'], () => {
   browserSync.init({
     server: {
-      baseDir: './dist'
+      baseDir: 'dist'
     },
     open: false
   })
@@ -70,7 +63,7 @@ gulp.task('serve', ['bower', 'scss', 'babel', 'html'], () => {
 
 // publish to Github pages
 gulp.task('deploy', () => {
-  return gulp.src('./dist/**/*')
+  return gulp.src('dist/**/*')
     .pipe(ghPages())
 })
 
